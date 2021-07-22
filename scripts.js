@@ -52,24 +52,51 @@ function init(){
 
     moveRight.addEventListener("click", movesRight );
 
+    rocketImg.style.position = "relative";
+    rocketImg.style.left = "0px";
+    rocketImg.style.right = "0px";
+
     function movesRight(){
+       let left = parseInt(rocketImg.style.left.replace(/px/,""));
+       let right = parseInt(rocketImg.style.right.replace(/px/,""));
+       console.log(right);
+       console.log(left);
+       
+       if(left === 0){
+           right += 10;
+           rocketImg.style.right = right +"px"
+       } else {
+           left -=10;
+           rocketImg.style.left = left +"px"
+
+       }
+       
         
-        rocketImg.style.position = "relative";
-        rocketImg.style.right += "10px";
     }
     moveLeft.addEventListener("click", movesLeft );
    
     function movesLeft(){
-        rocketImg.style.position = "relative";
-        rocketImg.style.left += "10px";
-        console.log("hello");
+        let left = parseInt(rocketImg.style.left.replace(/px/,""));
+       let right = parseInt(rocketImg.style.right.replace(/px/,"")); 
+       console.log(right);
+       console.log(left);
+       
+       if(right === 0){
+           left += 10;
+           rocketImg.style.left = left +"px"
+       } else {
+           right -=10;
+           rocketImg.style.right = right +"px"
+
+       }
+        
     }
-    moveDown.addEventListener("click", movesDown);
-    function(){}
+    //moveDown.addEventListener("click", movesDown);
+    /*function(){}
 
 
     moveUp.addEventListener("click", movesUp);
-  
+  */
 
 
 }
