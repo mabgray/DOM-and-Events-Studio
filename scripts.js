@@ -4,11 +4,11 @@ function init(){
     const flightPara = document.getElementById("flightStatus");
     const abortButton = document.getElementById("missionAbort");
     const liftButton = document.getElementById("takeoff");
-    const colorBackground  = document.getElementById("Backgroundshuttle");
-    const heightOfShuttle = document.getElementById("spaceShuttleHeight");
+    const colorBackground  = document.getElementById("shuttleBackground");
+    const heightOfShuttle = document.getElementById("spaceShuttleHeight");//this is getting the number of the space shuttles height
+    let groundZero = Number(heightOfShuttle.innerHTML);
+    let newHeight = groundZero + 10000;
     const toLandButton = document.getElementById("landing");
-    let groundZero = Number(heightOfShuttle.innerHTML) ;
-    let newHeight =    groundZero + 10000;
     const moveUp = document.getElementById("up");
     const moveDown = document.getElementById("down");
     const moveRight = document.getElementById("right");
@@ -23,7 +23,7 @@ function init(){
         if(conf){
             flightPara.innerHTML="Shuttle in flight.";
             colorBackground.style.background='blue';
-            heightOfShuttle.innerHTML =newHeight;
+            heightOfShuttle.innerHTML = newHeight;
         }
     }
 
@@ -50,54 +50,50 @@ function init(){
 
     }
 
-    moveRight.addEventListener("click", movesRight );
 
-    rocketImg.style.position = "relative";
-    rocketImg.style.left = "0px";
-    rocketImg.style.right = "0px";
+moveRight.addEventListener("click", movesRight);
 
-    function movesRight(){
-       let left = parseInt(rocketImg.style.left.replace(/px/,""));
-       let right = parseInt(rocketImg.style.right.replace(/px/,""));
-       console.log(right);
-       console.log(left);
-       
-       if(left === 0){
-           right += 10;
-           rocketImg.style.right = right +"px"
-       } else {
-           left -=10;
-           rocketImg.style.left = left +"px"
+rocketImg.style.position = "relative";
+rocketImg.style.left = "0px";// setting the "like the margin" left side
 
-       }
-       
-        
-    }
-    moveLeft.addEventListener("click", movesLeft );
+
+function movesRight(){
+    let left = parseInt(rocketImg.style.left.replace(/px/,""));
    
-    function movesLeft(){
-        let left = parseInt(rocketImg.style.left.replace(/px/,""));
-       let right = parseInt(rocketImg.style.right.replace(/px/,"")); 
-       console.log(right);
-       console.log(left);
-       
-       if(right === 0){
-           left += 10;
-           rocketImg.style.left = left +"px"
-       } else {
-           right -=10;
-           rocketImg.style.right = right +"px"
-
-       }
+        left +=10;//may be refrence to padding (or not) that is why it moves in the opposite direction
+        rocketImg.style.left = left + "px";
         
-    }
-    //moveDown.addEventListener("click", movesDown);
-    /*function(){}
+  
+   
+}
+moveLeft.addEventListener("click", movesLeft);
+
+function movesLeft(){
+    let left = parseInt(rocketImg.style.left.replace(/px/,""));
+        left -= 10;
+        rocketImg.style.left = left + "px";
+}
+
+moveUp.addEventListener("click", movesUp);
+
+function movesUp(){
+    let currentHeight = Number(heightOfShuttle.innerHTML);
+    let newHeight = currentHeight + 10000;
+    heightOfShuttle.innerHTML = newHeight;
+}
+
+moveDown.addEventListener("click", movesDown);
+
+function movesDown(){
+    let currentHeight = Number(heightOfShuttle.innerHTML);
+    let newHeight = currentHeight - 10000;
+    heightOfShuttle.innerHTML = newHeight;
+}
 
 
-    moveUp.addEventListener("click", movesUp);
-  */
 
 
+
+ 
 }
 window.addEventListener("load",init)
